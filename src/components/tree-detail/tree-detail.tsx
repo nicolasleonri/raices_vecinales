@@ -16,6 +16,8 @@ import { TreeIcon } from "../icons/tree-icon";
 
 export const TreeDetail: React.FC = () => {
 	const i18n = useI18nStore().i18n();
+	const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
+	const [frozenTreeId, setFrozenTreeId] = useState<string | null>(null);
 
 	const [url, removeSearchParam] = useUrlState((state) => [
 		state.url,
@@ -49,9 +51,6 @@ export const TreeDetail: React.FC = () => {
 		);
 	}, [treeCoreData, i18n]);
 
-	// State for confirmation
-	const [isConfirmed, setIsConfirmed] = useState(false);
-
 	const onClose = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
 		e.preventDefault();
 		removeSearchParam("treeId");
@@ -64,10 +63,13 @@ export const TreeDetail: React.FC = () => {
 		setHoveredTreeId(treeId);
 	};
 
-	// Handle confirmation box change
-	const handleConfirmChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setIsConfirmed(event.target.checked);
-	};
+	const handleTreeSelection = (e: React.FormEvent) => {
+		e.preventDefault();
+		setIsConfirmed(true);
+		// You can add any additional logic to handle the treeId here.
+		setFrozenTreeId(treeId);
+		console.log("Tree ID Selected:", treeId);
+	  };
 
 	return (
 		<div className="pointer-events-auto h-full bg-white rounded-l shadow-gdk-hard-up flex w-[100vw] flex-col gap-4 overflow-scroll p-5 lg:w-[400px] lg:min-w-[400px]">
@@ -105,20 +107,42 @@ export const TreeDetail: React.FC = () => {
 				<p className="font-semibold">{i18n.treeDetail.onlyAdoptedByOtherUsers}</p>
 				<p>[Name: Info]</p> {/* Tree ID */}
 			</div>
-
-			<div className="mb-4">
-						<label>
-							<input
-								type="checkbox"
-								checked={isConfirmed}
-								onChange={handleConfirmChange}
-								className="mr-2"
-							/>
-							{` ${i18n.treeDetail.confirmationText}`}
-						</label>
-					</div>
-
 			
+			{isConfirmed ? (
+            <div className="bg-green-100 text-green-800 p-4 rounded-md">
+              <h2 className="text-2xl font-semibold text-center">Selection Confirmed! ✅</h2>
+              <p className="mt-2 text-center">You have selected tree ID: {frozenTreeId}</p>
+            </div>
+          	) : (
+			<form onSubmit={handleTreeSelection} className="space-y-6">
+              {/* Tree ID Input */}
+              <div className="flex flex-col gap-y-2">
+				<label htmlFor="treeId" className="block font-semibold">Tree ID:</label>
+				{isConfirmed ? (
+					<p className="text-lg p-3 border border-gray-300 rounded-md">{treeId}</p>  // Display as text after confirmation
+				) : (
+					<input
+					id="treeId"
+					type="text"
+					value={treeId}
+					onChange={(e) => setTreeId(e.target.value)}
+					className="w-full p-3 text-lg border border-gray-300 rounded-md"
+					required
+					readOnly={isConfirmed} // If confirmed, make the field read-only
+					/>
+				)}
+				</div>
+
+              {/* Confirm Button */}
+              <div className="flex justify-center pt-6">
+                <button
+                  type="submit"
+                  className="px-8 py-4 bg-gdk-neon-green text-white rounded-lg font-semibold text-lg hover:bg-green-600 transition duration-300"
+                >
+                  Confirm Selection
+                </button>
+              </div>
+            </form>)}	
 		</div>
 	);
 };

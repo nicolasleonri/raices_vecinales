@@ -1,0 +1,45 @@
+CREATE TABLE IF NOT EXISTS found_neighbors (
+    tree_id TEXT PRIMARY KEY,
+    depth INT
+); 
+
+TRUNCATE TABLE found_neighbors; -- Clear existing data before inserting new values
+
+WITH neighbor_data AS (
+    SELECT
+        t1.id AS tree_id,
+        t2.id AS neighbor_id
+    FROM trees t1
+    JOIN trees t2 ON t1.id < t2.id
+    WHERE ST_DWithin(t1.geom::geography,
+                     t2.geom::geography,
+                     t1.tpz_m + t2.tpz_m)
+)
+INSERT INTO found_neighbors (tree_id, depth)
+SELECT neighbor_id, 1  -- Depth is set to 1 (direct neighbors)
+FROM neighbor_data 
+WHERE tree_id = '295369'
+ON CONFLICT (tree_id) DO NOTHING; -- Avoid duplicate inserts
+
+WITH RECURSIVE neighbor_data AS (
+    -- Base case: Find direct neighbors of all trees in found_neighbors
+    SELECT 
+        fn.tree_id AS source_id, -- The original tree we're expanding from
+        t2.id AS neighbor_id,
+        fn.depth + 1 AS new_depth
+    FROM found_neighbors fn
+    JOIN trees t2 ON ST_DWithin(
+        (SELECT geom FROM trees WHERE id = fn.tree_id)::geography,
+        t2.geom::geography,
+        (SELECT tpz_m FROM trees WHERE id = fn.tree_id) + t2.tpz_m
+    )
+    WHERE fn.depth <= 5 -- STOP if depth exceeds 2
+    AND NOT EXISTS (
+        -- Ensure we don't insert duplicates
+        SELECT 1 FROM found_neighbors f WHERE f.tree_id = t2.id
+    ) 
+)
+INSERT INTO found_neighbors (tree_id, depth)
+SELECT neighbor_id, new_depth
+FROM neighbor_data
+ON CONFLICT (tree_id) DO NOTHING; -- Prevent duplicate inserts For perfomance, we will add a limit on how many recursions are possible
