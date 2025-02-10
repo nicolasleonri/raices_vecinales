@@ -18,9 +18,10 @@ interface AuthState {
 	login: ({ email, password }: Credentials) => Promise<void>;
 	logout: () => Promise<void>;
 	register: ({
-		email,
-		username,
-		password,
+		name,
+		country,
+		age,
+		years_of_migration,
 	}: RegistrationCredentials) => Promise<void>;
 	forgotPassword: (email: string) => Promise<void>;
 	isPasswordRecovery: boolean;

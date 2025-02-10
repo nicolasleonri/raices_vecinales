@@ -64,6 +64,12 @@ export const Splash: React.FC = () => {
 		hideSplashScreen();
 	};
 
+	// When the button is clicked, navigate to /profile
+	const handleNavigateToProfile = () => {
+		hideSplashScreen();
+		window.location.href = "/profile";
+	}
+
 	return (
 		<div
 			ref={splashContainer}
@@ -95,9 +101,9 @@ export const Splash: React.FC = () => {
 								<LanguageToggle />
 							</div>
 						</div>
-						<div className="hidden w-full sm:w-3/5 lg:w-7/12 lg:flex flex-row justify-end mr-8 mb-4 mt-6 lg:my-0 lg:px-4">
+						{/* <div className="hidden w-full sm:w-3/5 lg:w-7/12 lg:flex flex-row justify-end mr-8 mb-4 mt-6 lg:my-0 lg:px-4">
 							<Credits />
-						</div>
+						</div> */}
 					</div>
 					<div>
 						<button
@@ -129,19 +135,19 @@ export const Splash: React.FC = () => {
 										? i18n.splash.actionTitle
 										: i18n.splash.actionTitleWinter
 								}
-								onClick={hideSplashScreen}
+								onClick={handleNavigateToProfile}
 							/>
 						</div>
 					</div>
-					<div className="hidden lg:flex pr-8 max-h-[150px] 2xl:scale-[1.2]">
+					{/* <div className="hidden lg:flex pr-8 max-h-[150px] 2xl:scale-[1.2]">
 						<img src="/images/icon-water-large.svg" alt="" />
-					</div>
+					</div> */}
 					<div className="lg:hidden w-full sm:w-3/5 lg:w-7/12 flex flex-row justify-end mt-8 pr-1 lg:my-0 lg:px-4">
 						<Credits />
 					</div>
 				</div>
 
-				<div className="flex flex-row gap-4 justify-between flex-wrap lg:flex-nowrap">
+				{/* <div className="flex flex-row gap-4 justify-between flex-wrap lg:flex-nowrap">
 					<SectionHeading
 						title={i18n.splash.discoverTitle}
 						content={i18n.splash.discoverContent}
@@ -165,10 +171,10 @@ export const Splash: React.FC = () => {
 						content={i18n.splash.networkContent}
 						icon={<HiThereIcon className="w-6 h-6 2xl:w-8 2xl:h-8" />}
 					/>
-				</div>
+				</div> */}
 			</div>
 
-			<div className="flex flex-col lg:grid lg:grid-cols-1 lg:grid-rows-1 w-full bg-[#F3FDF9] border-t-2">
+			{/* <div className="flex flex-col lg:grid lg:grid-cols-1 lg:grid-rows-1 w-full bg-[#F3FDF9] border-t-2">
 				<div className="lg:col-start-1 lg:row-start-1 flex flex-row justify-end w-full items-end">
 					<img
 						className="pt-8 w-full lg:w-[60%]"
@@ -188,7 +194,7 @@ export const Splash: React.FC = () => {
 						></ExternalAnchorLink>
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };

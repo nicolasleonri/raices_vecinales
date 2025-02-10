@@ -7,6 +7,9 @@ import { ErrorToast } from "./error/error-toast";
 import { Loading } from "./components/loading/loading";
 import { useMapStore } from "./components/map/map-store";
 import { useI18nStore } from "./i18n/i18n-store";
+import { Routes, Route } from 'react-router-dom';
+import Home from './Home';
+import Profile from './Profile';
 
 export const App: React.FC = () => {
 	useAuthStore();

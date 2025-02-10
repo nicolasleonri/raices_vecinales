@@ -16,11 +16,14 @@ import { useMapStore } from "../map/map-store";
 import { useSplashStore } from "../splash/splash-store";
 import { Legend } from "../legend/legend";
 import { Stats } from "../stats/stats";
+// import { UserForm } from "../user_form/user_form";
 
 export const Router: React.FC = () => {
 	const url = useUrlState((state) => state.url);
 	const setPathname = useUrlState((state) => state.setPathname);
 	const treeId = url.searchParams.get("treeId");
+	console.log(treeId);
+
 	useLocationEventListener();
 
 	const { isMapLoaded } = useMapStore();
@@ -65,6 +68,9 @@ export const Router: React.FC = () => {
 						<Navbar />
 					</div>
 
+					{/* {isMapLoaded && !treeId && <Splash />} Ensure Splash shows only if map is loaded and no treeId */}
+
+					{/* Show map contents only if splash screen is not visible */}
 					{!isSplashScreenVisible() && isMapLoaded && (
 						<div className="mt-3 flex w-full flex-row justify-center">
 							<div
@@ -87,6 +93,7 @@ export const Router: React.FC = () => {
 					<Legend />
 					{treeId && isMapLoaded && <TreeDetail />}
 					{isSplashScreenVisible() && <Splash />}
+					{/* {isSplashScreenVisible() && <UserForm />} */}
 				</div>
 			);
 		case "/profile/reset-password":
@@ -110,13 +117,20 @@ export const Router: React.FC = () => {
 					<Info />
 				</div>
 			);
-		case "/stats":
-			return (
-				<div className="flex h-dvh w-screen flex-col-reverse bg-white lg:flex-row">
-					<Navbar />
-					<Stats />
-				</div>
-			);
+		// case "/stats":
+		// 	return (
+		// 		<div className="flex h-dvh w-screen flex-col-reverse bg-white lg:flex-row">
+		// 			<Navbar />
+		// 			<Stats />
+		// 		</div>
+		// 	);
+		// case "/form":
+		// 	return (
+		// 		<div className="flex h-dvh w-screen flex-col-reverse bg-white lg:flex-row">
+		// 		<Navbar />
+		// 		<UserForm />
+		// 		</div>
+		// 	);
 		default:
 			return (
 				<div className="flex h-dvh w-screen flex-col-reverse bg-white lg:flex-row">

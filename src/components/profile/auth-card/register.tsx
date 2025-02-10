@@ -13,91 +13,100 @@ import { AlertDialog } from "../../alert-dialog/alert-dialog";
 import { MailIcon } from "../../icons/mail-icon";
 
 export const Register: React.FC = () => {
-	const { register } = useAuthStore();
-	const { setIsEmailTaken } = useEmailTakenStore();
-	const i18n = useI18nStore().i18n();
-	const { handleError } = useErrorStore();
-	const [emailSubmitted, setEmailSubmitted] = useState("");
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [country, setCountry] = useState("");
+  const [yearsOfMigration, setYearsOfMigration] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-	const onSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		const form = e.currentTarget;
-		setEmailSubmitted(form.email.value);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Here, you could send the data to an API or store it in state
+    console.log("Submitted Data:", { name, age, country, yearsOfMigration });
 
-		try {
-			await register({
-				email: form.email.value,
-				username: form.username.value,
-				password: form.password.value,
-			});
-			(
-				document.getElementById("register-alert-dialog") as HTMLDialogElement
-			).showModal();
-		} catch (error) {
-			if (getErrorMessage(error) === "User already registered") {
-				setIsEmailTaken(true);
-				form.email.setCustomValidity(i18n.navbar.profile.settings.checkInput);
-				form.reportValidity();
-				return;
-			}
+    // Show success message
+    setIsSubmitted(true);
 
-			handleError(i18n.common.defaultErrorMessage);
-		}
-	}, []);
+    // Optionally reset form fields
+    setName("");
+    setAge("");
+    setCountry("");
+    setYearsOfMigration("");
+  };
 
-	return (
-		<>
-			<InternalAnchorLink
-				href="/profile"
-				label={`< ${i18n.navbar.profile.settings.backToLogin}`}
-			/>
-			<h1 className="pt-6 text-2xl font-semibold">
-				{i18n.navbar.profile.settings.register}
-			</h1>
-			<form onSubmit={onSubmit} className="flex flex-col">
-				<div className="flex flex-col gap-y-2 pt-5">
-					<EmailInputWithValidation
-						label={i18n.navbar.profile.settings.email}
-					/>
-				</div>
+  return (
+    <div className="p-6 max-w-xl mx-auto text-center">
+      {isSubmitted ? (
+        <div className="bg-green-100 text-green-800 p-4 rounded-md">
+          <h2 className="text-2xl font-semibold">Erledigt! ✅</h2>
+          <p className="mt-2">Du kannst jetzt weiter machen. Geh auf "Karte" und such nach deiner Adresse.</p>
+        </div>
+      ) : (
+        <>
+          <h2 className="text-2xl font-bold mb-4">Your Details</h2>
+          <form onSubmit={handleSubmit} className="flex flex-col">
+            {/* Name Input */}
+            <div className="flex flex-col gap-y-2 pt-5">
+              <label htmlFor="name" className="block font-semibold">Name:</label>
+              <input
+                id="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full p-2 border border-gray-300 rounded"
+                required
+              />
+            </div>
 
-				<div className="flex flex-col gap-y-2 pt-6">
-					<UsernameInputWithValidation
-						label={i18n.navbar.profile.settings.username}
-					/>
-				</div>
+            {/* Age Input */}
+            <div className="flex flex-col gap-y-2 pt-6">
+              <label htmlFor="age" className="block font-semibold">Age:</label>
+              <input
+                id="age"
+                type="number"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                className="w-full p-2 border border-gray-300 rounded"
+                required
+                min="0"
+              />
+            </div>
 
-				<div className="flex flex-col pt-6">
-					<PasswordInputWithValidation
-						label={i18n.navbar.profile.settings.password}
-					/>
-				</div>
+            {/* Country of Origin Input */}
+            <div className="flex flex-col gap-y-2 pt-6">
+              <label htmlFor="country" className="block font-semibold">Country of Origin:</label>
+              <input
+                id="country"
+                type="text"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                className="w-full p-2 border border-gray-300 rounded"
+                required
+              />
+            </div>
 
-				<div className="pt-11">
-					<PrimaryButton
-						type="submit"
-						label={i18n.navbar.profile.settings.register}
-					/>
-				</div>
-			</form>
-			<p className="pt-6">{i18n.navbar.profile.settings.existingAccount}</p>
-			<InternalAnchorLink
-				href="/profile"
-				label={i18n.navbar.profile.settings.logIn}
-			/>
-			<AlertDialog
-				alertTitleWithIcon={
-					<>
-						{i18n.navbar.profile.settings.confirmEmailTitle}
-						<div className="self-center">
-							<MailIcon />
-						</div>
-					</>
-				}
-				alertMessage={i18n.navbar.profile.settings.confirmEmail(emailSubmitted)}
-				href="/profile"
-				id="register-alert-dialog"
-			/>
-		</>
-	);
+            {/* Years of Migration Input */}
+            <div className="flex flex-col pt-6">
+              <label htmlFor="yearsOfMigration" className="block font-semibold">Years of Migration:</label>
+              <input
+                id="yearsOfMigration"
+                type="number"
+                value={yearsOfMigration}
+                onChange={(e) => setYearsOfMigration(e.target.value)}
+                className="w-full p-2 border border-gray-300 rounded"
+                required
+                min="0"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <div className="pt-11">
+              <PrimaryButton type="submit" label="Register" />
+            </div>
+          </form>
+        </>
+      )}
+    </div>
+  );
 };

@@ -15,7 +15,8 @@ export const Navbar: React.FC = () => {
 
 	const navItems = [
 		{ label: i18n.navbar.map, path: "/map", icon: <MapIcon /> },
-		{ label: "Stats", path: "/stats", icon: <BarChartIcon /> },
+		// { label: "Formular", path: "/form", icon: <BarChartIcon /> },
+		// { label: "Stats", path: "/stats", icon: <BarChartIcon /> },
 		{
 			label: i18n.navbar.profile.sidebarLabel,
 			path: "/profile",

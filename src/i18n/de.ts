@@ -136,7 +136,7 @@ export const de: Content = {
 		about: {
 			head: {
 				question: "Über das Projekt",
-				answer: `Die Folgen des Klimawandels, insbesondere die trockenen und heißen Sommer, belasten das Berliner Ökosystem. Unsere Stadtbäume vertrocknen und tragen langfristige Schäden davon: In den letzten Jahren mussten immer mehr Bäume gefällt werden und ihre Lebensdauer sinkt. Inzwischen wird die Bevölkerung regelmäßig zur Unterstützung aufgerufen, allerdings weitgehend unkoordiniert. Dies möchten wir ändern und mit diesem Projekt eine koordinierte Bürger*innenbeteiligung bei der Bewässerung städtischen Grüns ermöglichen.`,
+				answer: `[Erklärung]`,
 
 				aboutUsTitle: "Über uns",
 				aboutUsAnswer: `„Gieß den Kiez” ist ein Projekt des [CityLAB Berlin](https://www.citylab-berlin.org/). Das CityLAB ist ein öffentliches Innovationslabor für die Stadt der Zukunft im ehemaligen Flughafen Berlin-Tempelhof. Gemeinsam mit einem großen Netzwerk aus Verwaltung, Zivilgesellschaft, Wissenschaft und Start-ups arbeiten wir hier an Ideen für ein lebenswertes Berlin. Das CityLAB ist ein Projekt der Technologiestiftung Berlin und wird gefördert durch die Berliner Senatskanzlei.`,
@@ -181,78 +181,31 @@ Pumpen aus [Open Street Map](https://www.openstreetmap.de)`,
 		faq: {
 			title: "F.A.Q.",
 			description:
-				"Basierend auf dem regen Austausch unserer Community auf Slack & euren Rückmeldungen per Email und Telefon, haben wir ein kleines FAQ angelegt. Hier werden die am häuftigsten gestellten Fragen beantwortet.",
+				"Wie funktioniert die App und was will sie schaffen?",
 			qa: [
 				{
-					question: "Wie kann ich mitmachen?",
-					answer: `
-Informieren:
-
-Neugierig, welcher Baum vor Deiner Tür steht? Unsere interaktive Karte visualisiert über 800.000 Straßen- und Anlagenbäume Berlins. Wenn Du mehr über einen Baum erfahren willst, navigiere und zoome Dich zum gewünschten Standort und klicke auf den farbigen Punkt. Nun werden Dir im Menüband links zahlreiche Informationen zum ausgewählten Baum angezeigt.
-
-Bäume bewässern und adoptieren:
-
-Du möchtest aktiv werden oder bist bereits aktiv am Gießen? Auf Gieß den Kiez kannst Du eintragen, ob und mit wie viel Wasser Du einen Baum gegossen hast. Bäume können auch adoptiert werden. Die adoptierten Bäume erscheinen im eigenen Nutzerprofil und können schneller wiedergefunden werden. So können andere Nachbarn in der Umgebung sehen, welche Bäume ihre Aufmerksamkeit benötigen. Um Bäume zu bewässern und zu adoptieren, lege dazu zunächst ein Profil mit einer gültigen Email-Adresse an und logge Dich im Anschluss ein. Nun kannst Du Deine Gieß-Aktionen entsprechend dokumentieren und sehen, ob und wie oft Bäume in Deinem Kiez bereits von anderen Nutzer:innen gegossen wurden.
-
-Vernetzen:
-
-Über unseren öffentlichen [Slack Channel](https://join.slack.com/t/giessdenkiez/shared_invite/zt-e3et281u-xON4UmBZpKavzDRkw5HmCQ) kannst Du Dich mit anderen Gießer:innen austauschen und defekte Pumpen in Deinem Kiez melden.`,
+					question:
+						"Wie funktioniert die App?",
+					answer:
+						"[Erklärung]",
 				},
 				{
 					question:
-						"Was kann ich tun, wenn Bäume nicht richtig eingetragen sind?",
+						"Was will sie schaffen?",
 					answer:
-						"Wir beziehen den Baum-Datensatz mit allen Attributen wie bspw. Adresse, Baumart und Pflanzjahr je Baum aus dem Geoportal der Stadt Berlin, dem FIS-Broker. Das im Geoportal bereitgestellte Baumkataster basiert wiederum auf den bezirklich aggregierten Daten der Straßen- und Grünflächenämter. Es kann daher immer wieder vorkommen, dass Daten von Bäumen veraltet sind oder Eigenschaften der tagesaktuellen Realität abweichen. Leider können wir selbst keine Änderungen im Baumkataster vornehmen. Etwaige Abweichungen können nur direkt bei der zuständigen bezirklichen Behörde gemeldet werden. Einmal im Jahr veröffentlichen die Grünflächenämter aber ein aktualisiertes Baumkataster, das wir nach Veröffentlichung mit Gieß den Kiez verknüpfen.",
-				},
-				{
-					question: "Warum sollte ich aktiv werden und Bäume gießen?",
-					answer: `Die langanhaltenden Dürre- und Hitzeperioden der letzten zwei Jahre haben dem Stadtgrün Berlins immens zugesetzt. Wenngleich nicht nur auf Trockenschäden zurückzuführen, mussten allein im Zeitraum zwischen 2018 und 2019 über 7.000 Bäume gefällt werden.
-Die Straßen- und Grünflächenämter gießen regelmäßig mehrere tausend Bäume, kommen allerdings mit dem Gießen während Berliner Hitze-Sommern nicht hinterher. Da die Grünflächenämter bezirklich organisiert sind, arbeitet jeder Bezirk etwas anders, sodass eine ganzheitliche und bedarfsgerechte Koordination durchaus mit Hürden verbunden ist. Durch die Plattform möchten wir auch Bürger:innen die Möglichkeit geben, Bäumen gezielt auf Grundlage ihrer aktuellen Wasserversorgung zu helfen und sich zu informieren. Ziel ist es, möglichst viele Bäume durch nachbarschaftliches Engagement zu retten.`,
-				},
-				{
-					question: "Wie gieße ich richtig?",
-					answer: `
-Je nach Alter, Standort und Baumart benötigen Bäume unterschiedlich viel Wasser. Insbesondere Jungbäume (0-10 Jahre) sind in Zeiten von Trockenheit, Strahlung und Hitze auf eine regelmäßige Wässerung angewiesen. Die bezirklichen Grünflächenämter in Berlin versorgen Jungbäume in der Regel bis zu einem Alter von 5 Jahren, wodurch besondern Junbäume im Alter zwischen 5 und 10 Jahren unsere Aufmerksamkeit benötigen.
-
-Vor jeder Gießung solltet ihr euch den Baum zunächst anschauen und überlegen ob der Baum wirklich Wasser benötigt. Wichtige Indikatoren für bedarfsgerechtes gießen sind bspw. das Alter (jung/alt), der Stammunfang (dünn/dick), der Standort (sonnig/schattig) oder die Beschaffenheit frischer Triebe (kahl/grün) eines Baumes. Bevor ihr mit dem gießen loslegt, empfehlen wir den ausgetrockneten Boden vor dem Gießen aufzulockern, sodass das Wasser in den Boden eindringen kann und nicht oberirdisch abläuft oder sich falsch anstaut. Angelehnt an das Berliner [Handbuch Gute Pflege](https://www.berlin.de/sen/uvk/natur-und-gruen/stadtgruen/pflegen-und-unterhalten/handbuch-gute-pflege), solltet ihr lieber selten, dafür mit größeren Menge an Wasser zu gießen. Das Handbuch empfiehlt für frisch gepflanzte Bäume bis zu 200l pro Gießung. So sorgt ihr dafür, dass die Bodenfeuchte auch in der Tiefe erhöht wird. 
-Auch zu empfehlen sind sogenannte Gießsäcke aus denen das Wasser nur sehr langsam austritt, kaum oberflächlich abläuft und somit kontinuierlich in den Boden sickert.
-					`,
-				},
-				{
-					question: "Wie gehe ich mit der Wasserknappheit um?",
-					answer: `In Zeiten von Trockenheit und Wasserknappheit ist es besonders wichtig, sparsam mit Wasser umzugehen. Wenn Du Deinen Baum gießen möchtest, dann frage dich zunächst immer, welcher Baum den größten Bedarf hat. Gieße lieber seltener, dafür aber mit größeren Mengen Wasser. So wird der Baum dazu angeregt, tiefere Wurzeln zu bilden und ist besser gegen Trockenheit gewappnet. Um eine Übersicht über aktuelle Bodenfeuchte in Berlin zu bekommen, lohnt sich ein Blick in die [Bewässerungsempfehlung für Stadtbäume](https://www.berlin.de/pflanzenschutzamt/stadtgruen/beratung/bewaesserungsempfehlung-fuer-stadtbaeume/) des Pflanzenschutzamt Berlins. Versuche das Wasser der öffentlichen Straßenpumpen, statt Trinkwasser aus der Hausleitung zu nutzen. Langfristig lohnt es sich, Regenwasser aufzufangen und in Regentonnen zu speichern. Nachbarschatsinitiativen wie [Wassertanke](https://wassertanke.org/) helfen Euch bei deratigen Nachbarschaftsprojekten.`,
+						"[Erklärung]",
 				},
 				{
 					question:
-						"An wen kann ich mich wenden, wenn Pumpen kaputt oder beschädigt sind?",
-					answer: `Für die Infrastruktur der Straßen, zu denen auch die öffentlichen Schwengelpumpen zählen, sind die jeweiligen Straßen- und Grünflächenämter der Bezirke verantwortlich. Sollten Pumpen kaputt oder beschädigt sein, kann dort Reparaturbedarf gemeldet werden. Die Standorte der Pumpen in der Karte laden wir wöchentlich aus der Datenbank von Open Street Map. Wenn Ihr helfen wollt, die Daten zu verbessern, indem ihr zum Beispiel eine defekte Pumpe meldet, könnt ihr das in unserem [Slack Channel #pumpen-melden](https://app.slack.com/client/T012K4SDYBY/C019SJQDPL7) tun. Die OSM-Community hat dann die Möglichkeit eure Informationen in die Datenbank einzutragen.`,
-				},
-				{
-					question: "Wie wird mit technischen Problemen umgegangen?",
-					answer: `Bei der Beteiligungsplattform „Gieß den Kiez” handelt es sich um einen Prototypen und demnach um eine Beta-Version einer Web-App. Wir sind uns einigen technischen Hürden bewusst, sind aber auf eure Mithilfe angewiesen. Euer technisches Feedback und eure Fragen nehmen wir gerne in unserem [Slack Channel](https://join.slack.com/t/giessdenkiez/shared_invite/zt-e3et281u-xON4UmBZpKavzDRkw5HmCQ) oder per Mail entgegen. Wer sich in der „Tech-Welt” zu Hause fühlt, ist herzlich zur Mitarbeit in unserem [Open Source GitHub Repository](https://github.com/technologiestiftung/giessdenkiez-de) eingeladen und kann seine Issues oder Code Fixes direkt in das Repository kommentieren.`,
-				},
-				{
-					question: "Warum lädt die Website nicht oder nur sehr langsam?",
-					answer: `Wenn die Seite zum ersten Mal geöffnet wird, lädt der Browser über 800.000 Datenpunkte – das kann eine Weile dauern! Unabhängig davon, kann es zu leicht unterschiedlichen Darstellungen bei der Verwendung unterschiedlicher Browser kommen. Für die beste „Experience” empfehlen wir die Nutzung von Chrome oder Firefox Desktop. Die häufigsten Probleme lassen sich erfahrungsgemäß beseitigen, wenn der Browser nicht veraltet, respektive die neueste Version installiert ist und eine stabile Internetverbindung (LAN oder WLAN) besteht. Die Nutzung über das Smartphone (Mobilfunknetz) kann zu Performance-Problemen (Seite lädt langsam) führen. Sollten wiederholt Probleme auftreten, könnt ihr diese in unserem [Slack Channel](https://join.slack.com/t/giessdenkiez/shared_invite/zt-e3et281u-xON4UmBZpKavzDRkw5HmCQ), per Mail oder via GitHub Issue unter Angabe des benutzten Geräts, des Betriebssystems, des Browsers und Version des Browsers melden.`,
+						"Wer hat sie erstellt?",
+					answer:
+						"[Erklärung]",
 				},
 				{
 					question:
-						"Was tun, wenn ich fälschlicherweise eine Gießung eingetragen habe?",
+						"Welche sind die Quellen?",
 					answer:
-						"Um eine Gießung rückgängig zu machen, weil bspw. stattdessen der Nachbarbaum oder zu einem anderen Tag gegossen wurde, klicke zunächst auf den Baum. Scrolle in der Seitenleiste des Baumes runter bis zur Ansicht der vergangenen Gießungen, klicke auf das Papierkorb-Symbol neben dem Eintrag, den Du löschen möchtest und klicke auf „Löschen”, um zu bestätigen. Es können nur Gießungen gelöscht werden, die Du selbst vorgenommen hast. Trage nach der Löschung die Gießung mit den richtigen Angaben (Anzahl an Litern und Zeitpunkt) ein.",
-				},
-				{
-					question: "Ist das Prinzip auf andere Städte übertragbar?",
-					answer: `Die „Gieß den Kiez” Plattform ist ein Open Source Software Projekt und läuft unter einer MIT Lizenz. Dementsprechend kann die Idee, aber auch der Quellcode für die Umsetzung in anderen Städten kostenlos genutzt und weiterentwickelt werden. Wenn Du Dich dafür interessierst, schau gerne in unserem [Open Source GitHub Repository](https://github.com/technologiestiftung/giessdenkiez-de) vorbei oder kontaktiere uns via Mail. Wir unterstützen Deine Stadt auch gerne bei der technischen Umsetzung mit [DeineStadtgießt](https://deinestadt.giessdenkiez.de/).`,
-				},
-				{
-					question: "Ich habe immer noch eine Frage!",
-					answer: `Das FAQ konnte Dir nicht weiterhelfen oder Du hast eine komplexere Anfrage? Dann schreib uns eine [E-Mail](mailto:giessdenkiez@citylab-berlin.org)`,
-				},
-				{
-					question: "Warum werden nicht alle Bäume Berlins angezeigt?",
-					answer:
-						"Gieß den Kiez baut auf dem Baumkataster auf. Das Baumkataster ist ein Verzeichnis der Stadt, in dem (Stadt-/Straßen- oder Park-)Bäume verwaltet werden und das durch die Straßen- und Grünflächenämter bereitgestellt wird. Das Straßen- und Grünflächenamt ist aber nicht für alle Bäume Berlins zuständig. Die Bäume im Plänterwald beispielsweise unterliegen dem Forstamt. Diese Bäume tauchen daher bei Gieß den Kiez nicht auf.",
+						"[Erklärung]",
 				},
 			],
 		},
@@ -271,13 +224,13 @@ Auch zu empfehlen sind sogenannte Gießsäcke aus denen das Wasser nur sehr lang
 	},
 	treeDetail: {
 		title: "Bauminformationen",
-		adoptIt: "Diesen Baum adoptieren",
+		adoptIt: "Anzahl Nachbar*innen",
 		alsoAdoptedByOtherUsers: "Auch von anderen User:innen adoptiert",
-		onlyAdoptedByOtherUsers: "Von anderen User:innen adoptiert",
+		onlyAdoptedByOtherUsers: "Wer wohnt noch hier?",
 		adoptLoading: "Baum wird adoptiert...",
 		unadoptLoading: "Adoption wird aufgehoben...",
-		isAdopted: "Du hast diesen Baum adoptiert",
-		adoptHintTitle: "Baum adoptieren",
+		isAdopted: "Grösse und Diameter",
+		adoptHintTitle: "ID:",
 		adoptHint:
 			"Wenn Du regelmäßig den gleichen Baum gießt, kannst Du diesen adoptieren. So findest Du ihn schnell in Deiner Profilübersicht wieder.",
 		adoptErrorMessage:
@@ -525,9 +478,8 @@ Der Bezirk ${district} hat uns zusätzliche Informationen zur individuellen Gie�
 	},
 	splash: {
 		headline:
-			"Die Berliner Stadtbäume leiden unter Trockenheit und Du kannst ihnen helfen!",
-		subheadlineWinter: `Derzeit sind die Bäume quasi im Winterschlaf und benötigen kein zusätzliches Wasser.
-**Ab März startet die Gießsaison dann wieder, und zwar volle Kanne!**`,
+			"Willkommen zu der App!",
+		subheadlineWinter: `Wir werden mit einem Formular anfangen. [Anweisungen]`,
 		subheadline:
 			"Erkundige Dich über den Wasserbedarf der Bäume in Deiner Nachbarschaft, adoptiere den Baum vor Deiner Haustür und werde Teil der aktiven Gieß-Community in Berlin!",
 		actionTitle: "Los geht's",
@@ -544,10 +496,10 @@ Der Bezirk ${district} hat uns zusätzliche Informationen zur individuellen Gie�
 		networkTitle: "Vernetzen",
 		networkContent:
 			"Tritt unserem Slack-Chat bei, um Dich mit der Gieß-Community zu vernetzen, Fragen auszutauschen und die Bewässerung in Deinem Kiez abzustimmen.",
-		questionHeadline: "Gieß den Kiez auch in Deiner Stadt?",
+		questionHeadline: "Wie wurde diese App erstellt?",
 		questionSubheadline:
-			"Städte wie Leipzig, Magdeburg und Co. haben sich bereits erfolgreich der Gieß-Welle angeschlossen! Ist Deine Stadt die nächste?",
-		discoverMoreTitle: "Erfahre mehr!",
+			"Dank des Projektes [Details]",
+		discoverMoreTitle: "Aprende más!",
 		letsGo: "Los geht's",
 	},
 	loading: {

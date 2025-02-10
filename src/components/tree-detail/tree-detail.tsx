@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { CloseIcon } from "../icons/close-icon";
 import { useUrlState } from "../router/store";
 import { useFetchTreeData } from "./hooks/use-fetch-tree-data";
@@ -21,10 +21,12 @@ export const TreeDetail: React.FC = () => {
 		state.url,
 		state.removeSearchParam,
 	]);
+
 	const { selectedTreeId, setSelectedTreeId, setHoveredTreeId } =
 		useTreeStore();
 
 	const treeId = url.searchParams.get("treeId");
+	console.log(treeId)
 	if (!treeId) {
 		return null;
 	}
@@ -47,6 +49,9 @@ export const TreeDetail: React.FC = () => {
 		);
 	}, [treeCoreData, i18n]);
 
+	// State for confirmation
+	const [isConfirmed, setIsConfirmed] = useState(false);
+
 	const onClose = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
 		e.preventDefault();
 		removeSearchParam("treeId");
@@ -59,6 +64,11 @@ export const TreeDetail: React.FC = () => {
 		setHoveredTreeId(treeId);
 	};
 
+	// Handle confirmation box change
+	const handleConfirmChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setIsConfirmed(event.target.checked);
+	};
+
 	return (
 		<div className="pointer-events-auto h-full bg-white rounded-l shadow-gdk-hard-up flex w-[100vw] flex-col gap-4 overflow-scroll p-5 lg:w-[400px] lg:min-w-[400px]">
 			<a href="/map" className="flex flex-row justify-end" onClick={onClose}>
@@ -69,31 +79,46 @@ export const TreeDetail: React.FC = () => {
 				<TreeIcon />
 				<div className="text-xl font-bold">{i18n.treeDetail.title}</div>
 			</div>
-			{treeCoreData ? (
-				<div className="flex flex-col">
-					<TreeAdoptCard
-						treeData={treeCoreData}
-						treeAgeClassification={treeAgeClassification}
-					/>
-					{treeTypeInfo && (
-						<TreeFlier info={treeTypeInfo.description}></TreeFlier>
-					)}
-					<TreeAge treeAge={treeAge} />
 
-					<TreeWaterNeed
-						treeData={treeCoreData}
-						treeAgeClassification={treeAgeClassification}
-						treeWateringData={treeWateringData}
-					/>
+			
+			<div className="mb-4">
+				<p className="font-semibold">{i18n.treeDetail.adoptHintTitle}</p>
+				<p>{treeId}</p> {/* Tree ID */}
+			</div>
 
-					{treeCoreData && (
-						<LastWaterings treeWateringData={treeWateringData} />
-					)}
-					<ProblemCard />
-				</div>
-			) : (
-				<Loading loadingText={i18n.loading.treeLoading} />
-			)}
+			<div className="mb-5">
+				<p className="font-semibold">{i18n.treeDetail.ageTitle}</p>
+				<p>[Alter]</p> {/* Tree ID */}
+			</div>
+
+			<div className="mb-6">
+				<p className="font-semibold">{i18n.treeDetail.isAdopted}</p>
+				<p>[GD]</p> {/* Tree ID */}
+			</div>
+
+			<div className="mb-6">
+				<p className="font-semibold">{i18n.treeDetail.adoptIt}</p>
+				<p>[Anzahl]</p> {/* Tree ID */}
+			</div>
+
+			<div className="mb-6">
+				<p className="font-semibold">{i18n.treeDetail.onlyAdoptedByOtherUsers}</p>
+				<p>[Name: Info]</p> {/* Tree ID */}
+			</div>
+
+			<div className="mb-4">
+						<label>
+							<input
+								type="checkbox"
+								checked={isConfirmed}
+								onChange={handleConfirmChange}
+								className="mr-2"
+							/>
+							{` ${i18n.treeDetail.confirmationText}`}
+						</label>
+					</div>
+
+			
 		</div>
 	);
 };

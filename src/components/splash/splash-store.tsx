@@ -9,7 +9,7 @@ interface SplashState {
 }
 
 export const useSplashStore = create<SplashState>()(
-	persist(
+	// persist(
 		(set, get) => ({
 			expirationDate: new Date(),
 
@@ -26,5 +26,5 @@ export const useSplashStore = create<SplashState>()(
 			},
 		}),
 		{ name: "splash-store" },
-	),
+	// ),
 );

@@ -33,7 +33,7 @@ export const Info: React.FC = () => {
 								isInitiallyExpanded={true}
 							>
 								<div className="py-2 pr-2 md:pr-6">
-									<Markdown
+									{/* <Markdown
 										className={"[&>p]:pt-1 pt-4 text-2xl font-semibold"}
 									>
 										{i18n.info.about.head.aboutUsTitle}
@@ -51,11 +51,11 @@ export const Info: React.FC = () => {
 										className={"[&>p]:pt-2 py-2"}
 									>
 										{i18n.info.about.head.press}
-									</Markdown>
-									<div className="w-full 2xl:w-[640px] pt-4 pb-4">
+									</Markdown> */}
+									{/* <div className="w-full 2xl:w-[640px] pt-4 pb-4">
 										<Credits />
-									</div>
-									<Markdown
+									</div> */}
+									{/* <Markdown
 										className={"[&>p]:pt-1 pt-4 text-2xl font-semibold"}
 									>
 										{i18n.info.about.head.communityTitle}
@@ -66,8 +66,8 @@ export const Info: React.FC = () => {
 										className={"[&>p]:pt-1 pt-2 pb-2"}
 									>
 										{i18n.info.about.head.communityAnswer}
-									</Markdown>
-									<PrimaryButton
+									</Markdown> */}
+									{/* <PrimaryButton
 										label={i18n.info.about.head.slackButton}
 										onClick={() => {
 											window.open(
@@ -76,19 +76,19 @@ export const Info: React.FC = () => {
 											);
 										}}
 										disabled={false}
-									/>
-									<Markdown
+									/> */}
+									{/* <Markdown
 										// @ts-expect-error typing too complex
 										components={{ a: ExternalAnchorLink }}
 										className={"[&>p]:pt-1 pt-2"}
 									>
 										{i18n.info.about.head.feedback}
-									</Markdown>
+									</Markdown> */}
 								</div>
 							</QaEntry>
 						</div>
 
-						{i18n.info.about.qa.map((item, idx) => (
+						{/* {i18n.info.about.qa.map((item, idx) => (
 							<React.Fragment key={`info-about-item-${idx}`}>
 								<QaEntry
 									question={item.question}
@@ -98,7 +98,7 @@ export const Info: React.FC = () => {
 									isInitiallyExpanded={false}
 								></QaEntry>
 							</React.Fragment>
-						))}
+						))} */}
 						<div className={`text-2xl font-semibold w-full pt-6 border-t-2`}>
 							{i18n.info.faq.title}
 						</div>
@@ -116,9 +116,9 @@ export const Info: React.FC = () => {
 								/>
 							</React.Fragment>
 						))}
-						<div className="pt-8">
+						{/* <div className="pt-8">
 							<SocialShare />
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>
