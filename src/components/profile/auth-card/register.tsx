@@ -11,6 +11,7 @@ import { useErrorStore } from "../../../error/error-store";
 import { InternalAnchorLink } from "../../anchor-link/internal-anchor-link";
 import { AlertDialog } from "../../alert-dialog/alert-dialog";
 import { MailIcon } from "../../icons/mail-icon";
+import { supabaseClient } from "../../../auth/supabase-client"; // Adjust path if needed
 
 export const Register: React.FC = () => {
   const [name, setName] = useState("");
@@ -19,12 +20,22 @@ export const Register: React.FC = () => {
   const [yearsOfMigration, setYearsOfMigration] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Here, you could send the data to an API or store it in state
     console.log("Submitted Data:", { name, age, country, yearsOfMigration });
-
+    
+    // HERE: TAKE FROM SQL
+    const handleSubmit = async () => {
+      const data = {
+        'storeId': customerDetails.id, category, categoryToBeAdded, description,
+          productCode, productName, sku, price, unit, quantity
+      }
+      await addProductCall(data);
+    }
+    
     // Show success message
     setIsSubmitted(true);
 

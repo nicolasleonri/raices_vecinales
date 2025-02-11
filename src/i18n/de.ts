@@ -229,7 +229,7 @@ Pumpen aus [Open Street Map](https://www.openstreetmap.de)`,
 		onlyAdoptedByOtherUsers: "Wer wohnt noch hier?",
 		adoptLoading: "Baum wird adoptiert...",
 		unadoptLoading: "Adoption wird aufgehoben...",
-		isAdopted: "Grösse und Diameter",
+		isAdopted: "Grösse (in m) und Umfang (in cm)",
 		adoptHintTitle: "ID:",
 		adoptHint:
 			"Wenn Du regelmäßig den gleichen Baum gießt, kannst Du diesen adoptieren. So findest Du ihn schnell in Deiner Profilübersicht wieder.",

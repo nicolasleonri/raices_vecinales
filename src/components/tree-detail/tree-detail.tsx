@@ -13,11 +13,15 @@ import { ProblemCard } from "./problem-card";
 import { TreeFlier } from "./tree-flier";
 import { Loading } from "../loading/loading";
 import { TreeIcon } from "../icons/tree-icon";
+import { supabaseClient } from "../../auth/supabase-client"; // Adjust path if needed
+
 
 export const TreeDetail: React.FC = () => {
 	const i18n = useI18nStore().i18n();
 	const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
 	const [frozenTreeId, setFrozenTreeId] = useState<string | null>(null);
+	const [treeData, setTreeData] = useState(null);
+	const [neighbors, setNeighbors] = useState<any[]>([]); // Store the neighbor data
 
 	const [url, removeSearchParam] = useUrlState((state) => [
 		state.url,
@@ -28,7 +32,6 @@ export const TreeDetail: React.FC = () => {
 		useTreeStore();
 
 	const treeId = url.searchParams.get("treeId");
-	console.log(treeId)
 	if (!treeId) {
 		return null;
 	}
@@ -69,7 +72,112 @@ export const TreeDetail: React.FC = () => {
 		// You can add any additional logic to handle the treeId here.
 		setFrozenTreeId(treeId);
 		console.log("Tree ID Selected:", treeId);
+		// HERE: TAKE FROM SQL
 	  };
+
+	const getInfo = async (id: string) => {
+	try {
+		const { data, error } = await supabaseClient
+		.from("trees")
+		.select("standalter, baumhoehe, tpz_m, kronedurch") // Fetch only required columns
+		.eq("id", id) // Filter by the provided `id`
+		.limit(1); // Since `id` is unique, limit to 1 result
+	
+		if (error) throw error; // Ensure error is handled
+	
+		console.log("Fetched Data:", data);
+		return data; // Return data for further use
+	} catch (err) {
+		console.error("Error fetching data:", err);
+		return null; // Return null on error
+	}
+	};
+
+	useEffect(() => {
+	const fetchData = async () => {
+		const result = await getInfo(treeId);
+		setTreeData(result);
+	};
+
+	fetchData();
+	}, []);
+
+	const get_neighbors = async () => {
+		try {
+			const { data, error } = await supabaseClient
+			.from("found_neighbors")
+			.select("tree_id") // Fetch only required columns
+
+			if (error) throw error; // Ensure error is handled
+		
+			console.log("Fetched Data:", data);
+			setNeighbors(data); // Store the fetched neighbors
+			return data; // Return data for further use
+		} catch (err) {
+			console.error("Error fetching data:", err);
+			return null; // Return null on error
+		}
+		};
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getInfo(treeId);
+			setTreeData(result);
+			};
+			
+		if (treeId && treeId !== selectedTreeId) {
+			fetchData();
+		}
+	}, [treeId]);
+
+	const findNeighbors = async (treeId: string, depth: int) => {
+		try {
+			await supabaseClient.from("found_neighbors").delete().neq("tree_id", ""); // Deletes all rows
+			const { data: directNeighbors, error: directError } = await supabaseClient.rpc("find_direct_neighbors", { tree_id_input: treeId }); 
+			// Using an RPC (see below)
+			if (directError) throw directError;
+			console.log("Inserted Direct Neighbors!");
+			// Step 3: Recursively find neighbors up to a depth of 5
+			const { data: recursiveNeighbors, error: recursiveError } = await supabaseClient.rpc("find_recursive_neighbors", { max_depth: depth });
+	  
+			if (recursiveError) throw recursiveError;
+	  
+			console.log(`Inserted Recursive Neighbors at Depth ${depth}:`, recursiveNeighbors);
+			console.log("Neighbor finding process completed.");
+
+			const result = await get_neighbors(treeId);
+			
+			// console.log(result);
+
+		} catch (err) {
+		  console.error("Error finding neighbors:", err);
+		}
+	  };
+
+	  useEffect(() => {
+		const fetchDataneighbors = async () => {
+			setNeighbors(null); // Clear the neighbor state
+			const result = await findNeighbors(treeId, 10);
+			// console.log(result)
+			};
+			
+		if (treeId && treeId !== selectedTreeId) {
+			fetchDataneighbors();
+		}
+	}, [treeId]);
+
+	useEffect(() => {
+		if (treeId && treeId !== selectedTreeId) {
+			setNeighbors(null); // Clear the neighbor state
+			get_neighbors(treeId);
+		}
+	  }, [treeId]);
+
+
+	  
+
+
+	  
 
 	return (
 		<div className="pointer-events-auto h-full bg-white rounded-l shadow-gdk-hard-up flex w-[100vw] flex-col gap-4 overflow-scroll p-5 lg:w-[400px] lg:min-w-[400px]">
@@ -81,7 +189,6 @@ export const TreeDetail: React.FC = () => {
 				<TreeIcon />
 				<div className="text-xl font-bold">{i18n.treeDetail.title}</div>
 			</div>
-
 			
 			<div className="mb-4">
 				<p className="font-semibold">{i18n.treeDetail.adoptHintTitle}</p>
@@ -90,17 +197,20 @@ export const TreeDetail: React.FC = () => {
 
 			<div className="mb-5">
 				<p className="font-semibold">{i18n.treeDetail.ageTitle}</p>
-				<p>[Alter]</p> {/* Tree ID */}
+				<div>{treeData ? treeData[0].standalter : "Loading..."}</div>
 			</div>
 
 			<div className="mb-6">
 				<p className="font-semibold">{i18n.treeDetail.isAdopted}</p>
-				<p>[GD]</p> {/* Tree ID */}
+				<div>{treeData ? treeData[0].baumhoehe : "Loading..."}</div>
+				<div>{treeData ? treeData[0].kronedurch : "Loading..."}</div>
 			</div>
 
 			<div className="mb-6">
 				<p className="font-semibold">{i18n.treeDetail.adoptIt}</p>
-				<p>[Anzahl]</p> {/* Tree ID */}
+				{/* <p>Number of Neighbors: {neighbors.length}</p>  */}
+				<div>{neighbors ? neighbors.length : "Loading..."}</div>
+
 			</div>
 
 			<div className="mb-6">

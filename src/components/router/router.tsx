@@ -22,7 +22,6 @@ export const Router: React.FC = () => {
 	const url = useUrlState((state) => state.url);
 	const setPathname = useUrlState((state) => state.setPathname);
 	const treeId = url.searchParams.get("treeId");
-	console.log(treeId);
 
 	useLocationEventListener();
 
