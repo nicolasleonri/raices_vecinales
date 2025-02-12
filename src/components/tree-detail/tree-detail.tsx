@@ -23,6 +23,38 @@ export const TreeDetail: React.FC = () => {
 	const [treeData, setTreeData] = useState(null);
 	const [neighbors, setNeighbors] = useState<any[]>([]); // Store the neighbor data
 
+	const insertData = async (input_tree_id: string) => {
+		try {
+		  // Step 1: Fetch the maximum id from the user_info table
+		  const { data: maxIdData, error: maxIdError } = await supabaseClient
+			.from("user_info")
+			.select("id")
+			.order("id", { ascending: false }) // Order by id in descending order
+			.limit(1); // Get only the first row (max id)
+	  
+		  if (maxIdError) throw maxIdError;
+	  
+		  const maxId = maxIdData?.[0]?.id;
+	  
+		  if (!maxId) {
+			throw new Error("No rows found in the user_info table");
+		  }
+	  
+		  const { error: updateError } = await supabaseClient
+			.from("user_info")
+			.update({ tree_id: input_tree_id }) // Convert tree_id to a number
+			.eq("id", maxId); // Update the row with the max id
+	  
+		  if (updateError) throw updateError;
+	  
+		//   console.log(`Updated row with id ${maxId} to include tree_id: ${tree_id}`);
+		  return null;
+		} catch (error) {
+		  console.error("Error in insertData:", error);
+		  throw error;
+		}
+	  };
+
 	const [url, removeSearchParam] = useUrlState((state) => [
 		state.url,
 		state.removeSearchParam,
@@ -71,27 +103,31 @@ export const TreeDetail: React.FC = () => {
 		setIsConfirmed(true);
 		// You can add any additional logic to handle the treeId here.
 		setFrozenTreeId(treeId);
+		insertData(treeId);
 		console.log("Tree ID Selected:", treeId);
 		// HERE: TAKE FROM SQL
+		// console.log("Neighbors:", neighbors);
+		const treeIds = neighbors.map((neighbor) => neighbor.tree_id);
+		console.log("Neighbors:", treeIds);
 	  };
 
-	const getInfo = async (id: string) => {
-	try {
-		const { data, error } = await supabaseClient
-		.from("trees")
-		.select("standalter, baumhoehe, tpz_m, kronedurch") // Fetch only required columns
-		.eq("id", id) // Filter by the provided `id`
-		.limit(1); // Since `id` is unique, limit to 1 result
-	
-		if (error) throw error; // Ensure error is handled
-	
-		console.log("Fetched Data:", data);
-		return data; // Return data for further use
-	} catch (err) {
-		console.error("Error fetching data:", err);
-		return null; // Return null on error
-	}
-	};
+	  const getInfo = async (id: string) => {
+		try {
+			const { data, error } = await supabaseClient
+			.from("trees")
+			.select("standalter, baumhoehe, tpz_m, kronedurch") // Fetch only required columns
+			.eq("id", id) // Filter by the provided `id`
+			.limit(1); // Since `id` is unique, limit to 1 result
+		
+			if (error) throw error; // Ensure error is handled
+		
+			// console.log("Fetched Data:", data);
+			return data; // Return data for further use
+		} catch (err) {
+			console.error("Error fetching data:", err);
+			return null; // Return null on error
+		}
+		};
 
 	useEffect(() => {
 	const fetchData = async () => {
@@ -110,7 +146,7 @@ export const TreeDetail: React.FC = () => {
 
 			if (error) throw error; // Ensure error is handled
 		
-			console.log("Fetched Data:", data);
+			// console.log("Fetched Data:", data);
 			setNeighbors(data); // Store the fetched neighbors
 			return data; // Return data for further use
 		} catch (err) {
