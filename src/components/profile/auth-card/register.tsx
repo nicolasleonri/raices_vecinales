@@ -19,31 +19,37 @@ export const Register: React.FC = () => {
   const [country, setCountry] = useState("");
   const [yearsOfMigration, setYearsOfMigration] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Here, you could send the data to an API or store it in state
-    console.log("Submitted Data:", { name, age, country, yearsOfMigration });
-    
-    // HERE: TAKE FROM SQL
-    const handleSubmit = async () => {
-      const data = {
-        'storeId': customerDetails.id, category, categoryToBeAdded, description,
-          productCode, productName, sku, price, unit, quantity
-      }
-      await addProductCall(data);
-    }
-    
-    // Show success message
+    console.log("Submitted Data:", { name, age, country, yearsOfMigration });    
     setIsSubmitted(true);
+    insertData("test", 12, "test", 12);
+    console.log("aver")
 
-    // Optionally reset form fields
+    // Only update state if successful
+    setIsSubmitted(true);
+    
+    // Reset form fields
     setName("");
     setAge("");
     setCountry("");
     setYearsOfMigration("");
+
+  };
+
+  const insertData = async (name: string, age: number, country: string, yearsOfMigration: number) => {
+    const { error } = await supabaseClient.rpc("insert_user_info", { 
+      p_name: name,
+      p_age: age,
+      p_country: country,
+      p_years_of_migration: yearsOfMigration,
+    });
+    if (error) throw error;
+    console.log(error);
+    return null;
   };
 
   return (

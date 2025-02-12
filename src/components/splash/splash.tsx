@@ -13,6 +13,7 @@ import { SplashTreeIcon } from "../icons/splash-tree-icon";
 import { ExternalAnchorLink } from "../anchor-link/external-anchor-link";
 import { useSplashStore } from "./splash-store";
 import { useIsInVegetationPeriod } from "../../utils/use-is-in-vegetation-period";
+import { supabaseClient } from "../../auth/supabase-client"; // Adjust path if needed
 
 interface SectionHeadingProps {
 	title: string;
@@ -36,6 +37,7 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
 	);
 };
 
+
 export const Splash: React.FC = () => {
 	const i18n = useI18nStore().i18n();
 	const { hideSplashScreen } = useSplashStore();
@@ -49,6 +51,17 @@ export const Splash: React.FC = () => {
 	  const [country, setCountry] = useState("");
 	  const [yearsOfMigration, setYearsOfMigration] = useState("");
 	  const [isSubmitted, setIsSubmitted] = useState(false);
+
+	const insertData = async (name: string, age: number, country: string, yearsOfMigration: number) => {
+		const { error } = await supabaseClient.rpc("insert_user_info", { 
+		  p_name: name,
+		  p_age: age,
+		  p_country: country,
+		  p_years_of_migration: yearsOfMigration,
+		});
+		if (error) throw error;
+		return null;
+	  };
 	
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -58,6 +71,8 @@ export const Splash: React.FC = () => {
 	
 		// Show success message
 		setIsSubmitted(true);
+
+		insertData(name, age, country, yearsOfMigration);
 	
 		// Optionally reset form fields
 		setName("");
