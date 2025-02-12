@@ -294,16 +294,11 @@ export const TreeDetail: React.FC = () => {
 				<div>{neighbors ? neighbors.length : "Loading..."}</div>
 
 			</div>
-
-			<div className="mb-6">
-				<p className="font-semibold">{i18n.treeDetail.onlyAdoptedByOtherUsers}</p>
-				<p>[Name: Info]</p> {/* Tree ID */}
-			</div>
 			
 			{isConfirmed ? (
             <div className="bg-green-100 text-green-800 p-4 rounded-md">
-              <h2 className="text-2xl font-semibold text-center">Selection Confirmed! ✅</h2>
-              <p className="mt-2 text-center">You have selected tree ID: {frozenTreeId}</p>
+              <h2 className="text-2xl font-semibold text-center"> ¡Selección confirmada! / Die Auswahl ist bestätigt! ✅</h2>
+              {/* <p className="mt-2 text-center">You have selected tree ID: {frozenTreeId}</p> */}
             </div>
           	) : (
 			<form onSubmit={handleTreeSelection} className="space-y-6">
@@ -331,7 +326,7 @@ export const TreeDetail: React.FC = () => {
                   type="submit"
                   className="px-8 py-4 bg-gdk-neon-green text-white rounded-lg font-semibold text-lg hover:bg-green-600 transition duration-300"
                 >
-                  Confirm Selection
+                  Confirmar selección / Auswahl bestätigen
                 </button>
               </div>
             </form>)}	

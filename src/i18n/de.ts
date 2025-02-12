@@ -230,7 +230,7 @@ Pumpen aus [Open Street Map](https://www.openstreetmap.de)`,
 		adoptLoading: "Baum wird adoptiert...",
 		unadoptLoading: "Adoption wird aufgehoben...",
 		isAdopted: "Grösse (in m) und Umfang (in cm)",
-		adoptHintTitle: "ID:",
+		adoptHintTitle: "Identifikationsnummer",
 		adoptHint:
 			"Wenn Du regelmäßig den gleichen Baum gießt, kannst Du diesen adoptieren. So findest Du ihn schnell in Deiner Profilübersicht wieder.",
 		adoptErrorMessage:
@@ -478,8 +478,15 @@ Der Bezirk ${district} hat uns zusätzliche Informationen zur individuellen Gie�
 	},
 	splash: {
 		headline:
-			"Willkommen zu der App!",
-		subheadlineWinter: `Wir werden mit einem Formular anfangen. [Anweisungen]`,
+			"Raíces Vecinales: Ein unterirdischer Blick auf die Verbindung zwischen Bäumen und ihren Nachbarschaften",
+		subheadlineWinter: `Raíces Vecinales ist eine Web-Anwendung, die die verborgenen Verbindungen unter unseren Füßen sichtbar macht: das Wurzelnetzwerk, das die Bäume unserer Stadt verbindet.
+Dieses Projekt entstand aus der Faszination heraus zu verstehen, wie Bäume, diese stillen Riesen, durch ihre Wurzelsysteme miteinander kommunizieren und sich gegenseitig unterstützen.
+\n Bäume sind keine isolierten Wesen. Unter der Erde bilden sie ein komplexes Netzwerk von Verbindungen durch ihre Wurzeln und die sie verbindenden Mykorrhizapilze.
+Dieses Netzwerk ermöglicht es ihnen, Nährstoffe zu teilen, Warnsignale über Gefahren zu senden, jüngere oder schwächere Bäume zu unterstützen und widerstandsfähige Waldgemeinschaften zu bilden.
+In Wurzelnachbarschaften kannst du dieses unterirdische Netzwerk erkunden und entdecken, wie die Bäume deiner Stadt miteinander verbunden sind.
+\n **Wie funktioniert es?** Die Anwendung ermöglicht es Nutzern: sich über ein einfaches Formular zu registrieren, den nächstgelegenen Baum zu ihrem Zuhause auszuwählen und die unterirdischen Verbindungen ihres Baumes zu visualisieren.
+\n **LASS UNS MIT DEM AUSFÜLLEN DES FORMULARS BEGINNEN! :)**
+		`,
 		subheadline:
 			"Erkundige Dich über den Wasserbedarf der Bäume in Deiner Nachbarschaft, adoptiere den Baum vor Deiner Haustür und werde Teil der aktiven Gieß-Community in Berlin!",
 		actionTitle: "Los geht's",

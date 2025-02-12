@@ -30,7 +30,7 @@ export const en: Content = {
 		},
 	},
 	locationSearch: {
-		placeholder: "Search for an address",
+		placeholder: "Busca una dirección",
 	},
 	legend: {
 		title: "Legend",
@@ -40,7 +40,7 @@ export const en: Content = {
 		grayTrees: "Not matching the filter settings",
 	},
 	navbar: {
-		map: "Map",
+		map: "Mapa",
 		profile: {
 			sidebarLabel: "Profile",
 			title: "Your profile",
@@ -130,7 +130,7 @@ export const en: Content = {
 		title: "404 - Page Not Found",
 	},
 	info: {
-		infoTitel: "Information",
+		infoTitel: "Infromaciones",
 		about: {
 			head: {
 				question: "About the project",
@@ -264,15 +264,15 @@ Use via smartphone (mobile network) can lead to performance problems (page loads
 		},
 	},
 	treeDetail: {
-		title: "Tree information",
-		adoptIt: "Adopt this tree",
+		title: "Información sobre árboles",
+		adoptIt: "Número de vecinos",
 		alsoAdoptedByOtherUsers: "Also adopted by other users",
 		onlyAdoptedByOtherUsers: "Adopted by other users",
-		ageTitle: "Age",
+		ageTitle: "Edad",
 		adoptLoading: "Tree is being adopted...",
 		unadoptLoading: "Adoption is being canceled...",
-		isAdopted: "You have adopted this tree",
-		adoptHintTitle: "Adopt a tree",
+		isAdopted: "Tamaño (en metros) y circunferencia (en cm)",
+		adoptHintTitle: "Número de identificación",
 		adoptHint:
 			"If you water this tree on a regular basis, you can adopt it. This way you can find it in your profile.",
 		adoptErrorMessage: "Error adopting the tree. Please try again.",
@@ -514,9 +514,15 @@ The district ${district} has provided us with additional information on the indi
 	},
 	splash: {
 		headline:
-			"Berlin's city trees are suffering from drought and you can help them!",
-		subheadlineWinter: `Currently the trees are practically in hibernation and don’t need any additional water.
-**Starting in March, it will pick up again! We Can!**`,
+			"Raíces Vecinales: Una mirada subterránea a la conexión entre árboles y sus vecindarios",
+		subheadlineWinter: `Raíces Vecinales es una aplicación web que busca visibilizar las conexiones ocultas que existen bajo nuestros pies: la red de raíces que conecta a los árboles de nuestra ciudad. 
+		Este proyecto nace de la fascinación por entender cómo los árboles, esos gigantes silenciosos, se comunican y apoyan mutuamente a través de sus sistemas radiculares.
+		\n Los árboles no son entidades aisladas. Bajo tierra, forman una intrincada red de conexiones a través de sus raíces y los hongos micorrízicos que las conectan. 
+		Esta red permite compartir nutrientes, enviar señales de advertencia sobre peligros, apoyar a los árboles más jóvenes o débiles y crear comunidades forestales resilientes.
+		En Raíces Vecinales, puedes explorar esta red subterránea y descubrir cómo los árboles de tu ciudad están conectados.
+		\n **¿Cómo funciona?** La aplicación permite a los usuarios: registrarse mediante un sencillo formulario, eeleccionar el árbol más cercano a su hogar y visualizar las conexiones subterráneas de su árbol.
+		\n **COMENCEMOS RELLENANDO EL FORMULARIO! :)**
+			`,
 		subheadline:
 			"Find out about the water needs of the trees in your neighborhood, adopt the tree on your doorstep and become part of the active watering community in Berlin!",
 		actionTitle: "Let's go",

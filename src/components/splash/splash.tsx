@@ -178,19 +178,19 @@ export const Splash: React.FC = () => {
 				{/* <div className="hidden lg:flex pr-8 max-h-[150px] 2xl:scale-[1.2]">
 					<img src="/images/icon-water-large.svg" alt="" />
 				</div> */}
-				<div className="lg:hidden w-full sm:w-3/5 lg:w-7/12 flex flex-row justify-end mt-8 pr-1 lg:my-0 lg:px-4">
+				<div className="lg:hidden w-full sm:w-3/5 lg:w-7 flex flex-row justify-end mt-8 pr-1 lg:my-0 lg:px-4">
 					<Credits />
 				</div>
 			</div>
 			{isSubmitted ? (
         <div className="bg-green-100 text-green-800 p-4 rounded-md">
-          <h2 className="text-2xl font-semibold">Erledigt! ✅</h2>
-          <p className="mt-2">Du kannst jetzt weiter machen. Geh auf "Karte" und such nach deiner Adresse.</p>
+          <h2 className="text-2xl font-semibold">Listo/Erledigt! ✅</h2>
+          <p className="mt-2">Ahora puedes continuar. Ve a "Mapa" y busca tu dirección. / Du kannst jetzt weiter machen. Geh auf "Karte" und such nach deiner Adresse.</p>
         </div>) : (
 					  <form onSubmit={handleSubmit} className="flex flex-col">
 						{/* Name Input */}
 						<div className="flex flex-col gap-y-2 pt-5">
-						  <label htmlFor="name" className="block font-semibold">Name:</label>
+						  <label htmlFor="name" className="block font-semibold">Nombre/Name:</label>
 						  <input
 							id="name"
 							type="text"
@@ -203,7 +203,7 @@ export const Splash: React.FC = () => {
 			
 						{/* Age Input */}
 						<div className="flex flex-col gap-y-2 pt-6">
-						  <label htmlFor="age" className="block font-semibold">Age:</label>
+						  <label htmlFor="age" className="block font-semibold">Edad/Alter:</label>
 						  <input
 							id="age"
 							type="number"
@@ -216,8 +216,8 @@ export const Splash: React.FC = () => {
 						</div>
 			
 						{/* Country of Origin Input */}
-						<div className="flex flex-col gap-y-2 pt-6">
-						  <label htmlFor="country" className="block font-semibold">Country of Origin:</label>
+						<div className="flex flex-col gap-y-2 pt-4">
+						  <label htmlFor="country" className="block font-semibold">País de origen/Ursprungsland:</label>
 						  <input
 							id="country"
 							type="text"
@@ -230,7 +230,7 @@ export const Splash: React.FC = () => {
 			
 						{/* Years of Migration Input */}
 						<div className="flex flex-col pt-6">
-						  <label htmlFor="yearsOfMigration" className="block font-semibold">Years of Migration:</label>
+						  <label htmlFor="yearsOfMigration" className="block font-semibold">Años de migración/Years of Migration:</label>
 						  <input
 							id="yearsOfMigration"
 							type="number"
