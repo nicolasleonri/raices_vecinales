@@ -17,11 +17,11 @@ export const Navbar: React.FC = () => {
 		{ label: i18n.navbar.map, path: "/map", icon: <MapIcon /> },
 		// { label: "Formular", path: "/form", icon: <BarChartIcon /> },
 		// { label: "Stats", path: "/stats", icon: <BarChartIcon /> },
-		{
-			label: i18n.navbar.profile.sidebarLabel,
-			path: "/profile",
-			icon: <UserIcon />,
-		},
+		// {
+		// 	label: i18n.navbar.profile.sidebarLabel,
+		// 	path: "/profile",
+		// 	icon: <UserIcon />,
+		// },
 		{ label: i18n.navbar.info, path: "/about", icon: <InfoIcon /> },
 	];
 

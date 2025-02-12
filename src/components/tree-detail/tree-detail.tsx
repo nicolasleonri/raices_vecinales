@@ -14,7 +14,8 @@ import { TreeFlier } from "./tree-flier";
 import { Loading } from "../loading/loading";
 import { TreeIcon } from "../icons/tree-icon";
 import { supabaseClient } from "../../auth/supabase-client"; // Adjust path if needed
-
+import { useMapStore } from "../map/map-store";
+import * as turf from "@turf/turf";
 
 export const TreeDetail: React.FC = () => {
 	const i18n = useI18nStore().i18n();
@@ -22,6 +23,33 @@ export const TreeDetail: React.FC = () => {
 	const [frozenTreeId, setFrozenTreeId] = useState<string | null>(null);
 	const [treeData, setTreeData] = useState(null);
 	const [neighbors, setNeighbors] = useState<any[]>([]); // Store the neighbor data
+	const { map, isMapLoaded } = useMapStore();
+    const [coordinates, setCoordinates] = useState<{ lat: number; lng: number } | null>(null);
+
+	const createCircleLayer = (map: mapboxgl.Map, lat: number, lng: number, radius: number) => {
+        const center = turf.point([lng, lat]);
+        const circle = turf.circle(center, radius, { units: 'meters' });
+
+		if (!map.getSource('circle-source')) {
+            map.addSource('circle-source', {
+                type: 'geojson',
+                data: circle
+            });
+
+            map.addLayer({
+                id: 'circle-layer',
+                type: 'fill',
+                source: 'circle-source',
+                paint: {
+                    'fill-color': '#007cbf',
+                    'fill-opacity': 0.5
+                }
+            });
+        } else {
+            const source = map.getSource('circle-source') as mapboxgl.GeoJSONSource;
+            source.setData(circle);
+        }
+    };
 
 	const insertData = async (input_tree_id: string) => {
 		try {
@@ -108,8 +136,25 @@ export const TreeDetail: React.FC = () => {
 		// HERE: TAKE FROM SQL
 		// console.log("Neighbors:", neighbors);
 		const treeIds = neighbors.map((neighbor) => neighbor.tree_id);
-		console.log("Neighbors:", treeIds);
+		const lat = url.searchParams.get("lat");
+		const lng = url.searchParams.get("lng");
+		setCoordinates({ lat: parseFloat(lat), lng: parseFloat(lng)});
+		// console.log("Coordinates:", lat, lng);
 	  };
+
+	useEffect(() => {
+        if (coordinates) {
+            console.log("Coordinates:", coordinates);
+			createCircleLayer(map, parseFloat(coordinates.lat), parseFloat(coordinates.lng), 10);
+        }
+    }, [coordinates]);
+
+	useEffect(() => {
+        if (neighbors && neighbors.length > 0 && coordinates != null) {
+			console.log("Neighbors length:", neighbors.length);
+			createCircleLayer(map, parseFloat(coordinates.lat), parseFloat(coordinates.lng), neighbors.length*4.5);
+        }
+    }, [neighbors]);
 
 	  const getInfo = async (id: string) => {
 		try {
@@ -198,16 +243,17 @@ export const TreeDetail: React.FC = () => {
 			};
 			
 		if (treeId && treeId !== selectedTreeId) {
+			setNeighbors(null); // Clear the neighbor state
+			get_neighbors(treeId);
 			fetchDataneighbors();
 		}
 	}, [treeId]);
 
-	useEffect(() => {
-		if (treeId && treeId !== selectedTreeId) {
-			setNeighbors(null); // Clear the neighbor state
-			get_neighbors(treeId);
-		}
-	  }, [treeId]);
+	// useEffect(() => {
+	// 	if (treeId && treeId !== selectedTreeId) {
+			
+	// 	}
+	//   }, [treeId]);
 
 
 	  

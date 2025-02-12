@@ -16,7 +16,7 @@ export const LanguageToggle: React.FC = () => {
 			onClick={switchLanguage}
 		>
 			<p className=" font-semibold hover:underline text-lg">
-				{nonActiveLanguage.toUpperCase()}
+				{nonActiveLanguage === "en" ? "ES" : nonActiveLanguage.toUpperCase()}
 			</p>
 		</button>
 	);
